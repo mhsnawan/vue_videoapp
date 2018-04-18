@@ -21,19 +21,20 @@ router.get('/', (req, res, next) => {
 
 router.get('/movies/:id/:vidsrc', (req, res) => {
   console.log(req.params.id, req.params.vidsrc);
-  connect.query(`SELECT * FROM tbl_comments WHERE comments_movie = ${req.params.id}`, (err, rows) => {
+  connect.query(`SELECT * FROM tbl_comments WHERE comments_movie = ${req.params.id}`, (err, results) => {
     if (err) {
       console.log(err);
     } else {
       res.render('movie', {
         movie : req.params.id,
         trailer : req.params.vidsrc,
-        data : JSON.stringify(rows),
+        data : JSON.stringify(results),
         mainpage : false,
         videopage: true
       });
+      console.log('And the result of query is ' + results);
     }
-  })
+  });
 });
 
 
