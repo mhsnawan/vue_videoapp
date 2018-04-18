@@ -1,0 +1,53 @@
+<section id="movie">
+  <a href="/" class="back-button"><i class="far fa-arrow-alt-circle-left"></i></a>
+
+  <video class="video-page" autoplay>
+      <source src="/video/{{trailer}}" type="video/mp4">
+      <!-- alteranate/fallback sources here -->
+  </video>
+
+  <!-- add your own review -->
+  <aside class="add-comment">
+    <h4>Add a review</h4>
+    <span class="hidden movId">{{ movie }}</span>
+    <input type="range" name="myRange" min="0" max="5" step="1" v-model="numStars">
+    <label for="myRange">${numStars}Star Review</label>
+    <textarea name="myReview" placeholder="What did you think?" v-model="review"></textarea>
+    <input type="submit" value="Submit" v-on:click="addReview">
+  </aside>
+
+  <!-- add the reviews-->
+  <article class ="comments" v-if="reviews.length > 0">
+    <div v-for="(review, index) in reviews">
+    <!-- will show stars here with a custom component-->
+    <i class="post-date">${ review.comments_date }
+    <!-- inside the database the row is called comments instead of reviews-->
+    <p>
+      ${ review.comments_copy }
+    </p>
+  </div>
+  </article>
+
+  
+	<footer>
+		<span>There should be some relevant info here... still in development</span>
+		<p class="copy">
+			&copy; 2018 The Awesome Company, Inc
+		</p>
+
+		<ul  v-if="links.length">
+			<li v-if="links[0].facebook_link">
+				<a :href="links[0].facebook_link"> <i class="fab fa-facebook"></i></a>
+			</li>
+			<li v-if="links[0].twitter_link">
+				<a :href="links[0].twitter_link" target="_blank"> <i class="fab fa-twitter-square"></i></a>
+			</li>
+			{{!-- <li>
+				<i class="fab fa-google-plus-square"></i>
+			</li> --}}
+			<li v-if="links[0].instagram_link">
+				<a :href="links[0].instagram_link"><i class="fab fa-instagram"></i></a>
+			</li>
+		</ul>
+	</footer>
+</section>

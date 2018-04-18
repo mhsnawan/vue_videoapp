@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.15/dist/vue.js"></script>
+</head>
+<body>
+	<header>
+		<nav>
+		<h1>Video App</h1>
+			<ul id="categoryCon">
+				<span class="checkboxtext">
+					<input type="checkbox" checked="true" id="all" name="genres[]" onchange="filterSelection('All')" value="All">
+					<label for="all">All</label>
+				</span>
+				<span  class="checkboxtext">
+					<input type="checkbox" id="action" name="genres[]" onchange="filterSelection('Action')" value="Action">
+					<label for="action">Action</label>						
+				</span>
+				<span>
+					<input type="checkbox" id="adventure" name="genres[]" onchange="filterSelection('Adventure')" value="Adventure">
+					<label for="adventure">Adventure</label>						
+				</span>
+				<span>
+					<input type="checkbox" id="comedy" name="genres[]"  onchange="filterSelection('Comedy')" value="Comedy">
+					<label for="comedy">Comedy</label>						
+				</span>
+				<span>
+					<input type="checkbox" id="crime" name="genres[]" onchange="filterSelection('Crime')" value="Crime">
+					<label for="crime">Crime</label>						
+				</span>
+				<span>
+					<input type="checkbox" id="drama" name="genres[]" onchange="filterSelection('Drama')" value="Drama">
+					<label for="drama">Drama</label>						
+				</span>
+				<span>
+					<input type="checkbox" id="family" name="genres[]" onchange="filterSelection('Family')" value="Family">
+					<label for="family">Family</label>
+				</span>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		{{{ body }}}
+	</main>
+
+
+  <script>
+    var appData = {
+      movies : {{{ data }}},
+	  genres: ["Family", "Drama","Action", "Comedy", "Adventure", "Crime"] // grab the unfiltered result set
+    }
+
+	function filterSelection(genre) {
+		let genres = document.getElementsByName("genres[]")
+		console.log(genres)
+		for (let i = 0; i < genres.length; i++) {
+			if (genres[i].value == 'All' && genre == 'All' && genres[i].checked) {
+				appData.genres = ["Family", "Drama","Action", "Comedy", "Adventure", "Crime"]
+				handleAllSelections(genres[i].checked)
+				break;
+			} else if (genres[i].value == 'All' && genre == 'All' && !genres[i].checked) {
+				appData.genres = []
+				handleAllSelections(genres[i].checked)
+				break;
+			} else if (genre == genres[i].value) {
+				if (genres[i].checked) {
+					console.log(genre, "true")
+					appData.genres.push(genre)
+					console.log(appData.genres)
+				} else {
+					console.log(genre, "false")
+					appData.genres.splice(appData.genres.indexOf(genre), 1)
+				}
+			}
+		}
+		console.log(genre)
+		appData.genres.sort()
+		myApp.movieGenres(appData.movies, appData.genres)
+	}
+
+	function handleAllSelections (status) {
+		let genres = document.getElementsByName("genres[]")
+		for (let i = 0; i < genres.length; i++) { 
+			status ? document.getElementsByName("genres[]")[i].checked = true : document.getElementsByName("genres[]")[i].checked = false
+		}
+	}
+  </script>
+	{{#if mainpage}}
+  	<script src="/js/main.js"></script>
+	{{/if}}
+
+	{{#if videopage}}
+		<script src="/js/videopage.js"></script>
+	{{/if}}
+</body>
+</html>

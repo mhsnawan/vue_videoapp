@@ -1,0 +1,320 @@
+.reviewCon{
+ display: block;
+}
+.comments
+{
+	width:50%;
+	display:inline-block;
+}
+
+.comments>div
+{
+	padding:0 1em;
+	margin-bottom:1.75em;
+}
+
+#movie>video
+{
+	margin-bottom:1.5em;
+}
+
+.star-rating-checkbox
+{
+	position:absolute;
+	overflow:hidden;
+	clip:rect(0 0 0 0);
+	height:1px;
+	width:1px;
+	margin:-1px;
+	padding:0;
+	border:0
+}
+
+.star-rating-star
+{
+	display:inline-block;
+	padding:3px;
+	vertical-align:middle;
+	line-height:1;
+	font-size:2.25em;
+	color:#ABABAB;
+	-webkit-transition:color .2s ease-out;
+	transition:color .2s ease-out;
+}
+
+.star-rating-star:hover
+{
+	cursor:pointer
+}
+
+.star-rating-star.is-selected
+{
+	color:#FFD700
+}
+
+.star-rating-star.is-disabled:hover
+{
+	cursor:default
+}
+
+.add-comment
+{
+	width:100%;
+	display:block;
+	padding-left:1.5em;
+	position: relative;
+	margin-top: 150px;
+}
+
+.add-comment label
+{
+	margin-left:0.8em;
+	font-size:1.4em;
+	position:relative;
+	top:-5px;
+}
+
+.add-comment input[type=range]
+{
+	margin:1em 0;
+}
+
+.add-comment input[type=submit]
+{
+	padding:0.7em 1em;
+	border-radius:8px;
+	background-color: #3f3f3f;
+	color:white;font-weight:bold;
+	font-size:1.25em;
+	margin-top:1em;
+}
+
+.add-comment textarea
+{
+	display:block;
+	width:90%;
+	height:130px;
+	padding:0.75em;
+	line-height:1.5;
+	border-style: inset;
+	border-color: #5f5f5f;
+	border-width:8px;
+}
+
+.review-heading
+{
+	font-size:1.5em
+}
+
+.hidden
+{
+	display:none
+}
+
+.back-button
+{
+	position:absolute;
+	top:90px;
+	left:12px;
+	z-index:500;
+	color:white;
+	font-size:3em;
+}
+
+.simplebar-scrollbar:before
+{
+	background:white;
+}
+*
+{
+	border:0;
+	padding:0;
+	margin:0;
+}
+
+body
+{
+	font:14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-color: #0198E1;
+	color: black;
+}
+
+a
+{
+	color:#00B7FF;text-decoration:none
+}
+
+header
+{
+	background-color:#333;
+	padding:9px 14px;
+	position:fixed;
+	z-index:500;
+	width:100%;
+	color: white;
+}
+
+header span
+{
+	margin-left:12px;
+	text-transform:uppercase;position:relative;
+	top:-4px;
+}
+
+video
+{
+	width:50%;
+	display: inline-block;
+}
+
+.video-page
+{
+	width: 100%;
+	display: inline-block;
+}
+
+.movie-wrapper
+{
+	position:relative;
+	padding-top:45px;
+	background-color: #5f5f5f;
+}
+
+aside
+{
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.movie-title
+{
+	color: white;
+	font-size:7.7em
+}
+
+span
+{
+	color:white;
+}
+
+.movie-year,.movie-time
+{
+	font-size:1.5em
+}
+
+.movie-genre
+{
+	font-size:1.25em;
+	font-weight:bolder;
+	display:block;
+	text-transform:uppercase;
+	margin-top:8px;
+	color: white;
+}
+
+.movie-desc
+{
+	font-size:1em;
+	color: white;
+}
+
+.genre-name
+{
+	font-size:2em;
+	padding:1em 0 0.35em;
+	color: white;
+}
+
+.movie-thumb
+{
+	width:160px
+}
+
+.genre-list
+{
+	padding:0 14px;
+	list-style-type:none;
+}
+
+.genre-lists
+{
+	padding:0 14px;
+	overflow:hidden;
+}
+
+.genre-lists>div
+{
+	position:relative;
+	transition:all .5s;
+	white-space:nowrap;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
+
+.genre-item
+{
+	display:inline-block
+}
+
+.movie-list
+{
+	display:inline-block;margin-right:1.25em
+}
+
+nav ul
+{
+	position:absolute;
+	right:3em;
+	top:1.2em;
+	list-style-type:none;
+}
+
+nav ul li
+{
+	display:inline-block;
+	font-size:1.25em;
+	padding:0 0.2em;
+	cursor:pointer;
+}
+
+footer
+{
+	padding:2em 1em;
+}
+
+footer ul
+{
+	list-style-type:none;
+}
+
+footer ul li
+{
+	font-size:2.5em;
+	display:inline-block;
+	margin-right:0.4em;
+	color:rgba(255,255,255,0.3);
+	margin-top:0.4em;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 10px;
+  margin-right: 5px;
+}
+
+/* Might want to wrap a span around your checkbox text */
+.checkboxtext
+{
+  /* Checkbox text */
+  font-size: 110%;
+  display: inline;
+}
