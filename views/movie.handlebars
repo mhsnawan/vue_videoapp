@@ -5,7 +5,16 @@
       <source src="/video/{{trailer}}" type="video/mp4">
       <!-- alteranate/fallback sources here -->
   </video>
+  <div class="col-md-4" style="margin-left:20px;">
+    <h2>{{ movie_data.title }}</h2>
+    <div class="col-md-10">
+      <p>{{ movie_data.description }}</p>
+    </div>
+    <h4>{{ movie_data.genre }}</h4>
+    
+  </div>
 
+  
   <!-- add your own review -->
   <aside class="add-comment">
     <h4>Add a review</h4>
