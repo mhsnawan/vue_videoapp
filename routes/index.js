@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
 router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
   console.log(req.params.id, req.params.vidsrc)
   //Getting movies details and comments through id
-  connect.query(`SELECT * FROM tbl_comments WHERE comments_movie = ${req.params.id}`, (err, rows)=> {
+  connect.query(`SELECT * FROM tbl_comments c WHERE comments_movie = ${req.params.id}`, (err, rows)=> {
     var movie_data;
     if (err) {
       console.log(err);
@@ -37,7 +37,8 @@ router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
               movie_data = {
               title : rows1[0].movies_title,
               description : rows1[0].movies_storyline,
-              genre : rows1[0].movies_genre
+              genre : rows1[0].movies_genre,
+              genre_id : req.params.genre_id
           };
           connect.query(`SELECT * FROM tbl_mov_genre WHERE genre_id = ${req.params.genre_id}`, (err, rows2)=> {
             if (err) {
@@ -55,11 +56,14 @@ router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
                   console.log(err);
                 } 
                 else {
+                  rows3.genre_id = req.params.genre_id;
+                  
+                  console.log('genre id is : '+req.params.genre_id);
                   res.render('movie', {
                     movie : req.params.id,
-                    defaultMovie : rows3[Math.floor(Math.random() * rows3.length)],
                     trailer : req.params.vidsrc,
                     movie_data : movie_data,
+                    genre_id : req.params.genre_id,
                     data : JSON.stringify(rows),
                     data1 : rows3,
                     mainpage : false,

@@ -10,7 +10,7 @@
     <div class="col-md-10">
       <p>{{ movie_data.description }}</p>
     </div>
-    <h4>{{ movie_data.genre }}</h4>
+    <h4>{{ movie_data.genre_id }}</h4>
     
   </div>
 
@@ -43,7 +43,9 @@
     <div class="genre-item">
       <h6 class="genre-name"></h6>
       <div class="movie-list">
+        {{genre_id}}
         <img class="movie-thumb"  src="/images/{{this.movies_cover}}" alt="Card image cap">
+        <a href="/movies/{{this.movies_id}}/{{../movie_data.genre_id }}/{{this.movies_trailer}}"><h5 class="card-title">{{this.movies_title}}</h5></a>
       </div>
     </div>
   </div>
