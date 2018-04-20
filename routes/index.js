@@ -20,29 +20,35 @@ router.get('/', (req, res, next) => {
   })
 });
 
-router.get('/movies/:id/:vidsrc', (req, res) => {
+router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
   console.log(req.params.id, req.params.vidsrc)
   //Getting movies details and comments through id
- connect.query(`SELECT * FROM tbl_comments c ,tbl_movies m, tbl_mov_genre mg WHERE c.comments_movie = ${req.params.id} AND m.movies_id = ${req.params.id} AND mg.movies_id = ${req.params.id}`, (err, rows)=> {
-    data = JSON.stringify(rows);
-    var movie_data = {
-      title : rows[0].movies_title,
-      description : rows[0].movies_storyline,
-      genre : rows[0].movies_genre
-    };
+  connect.query(`SELECT * FROM tbl_comments WHERE comments_movie = ${req.params.id}`, (err, rows)=> {
     if (err) {
       console.log(err);
     } 
-
     else {
-        res.render('movie', {
-        movie : req.params.id,
-        trailer : req.params.vidsrc,
-        movie_data : movie_data,
-        data : JSON.stringify(rows),
-        mainpage : false,
-        videopage: true
-      });
+      connect.query(`SELECT * FROM tbl_movies WHERE movies_id = ${req.params.id}`, (err, rows1)=> {
+        if (err) {
+          console.log(err);
+        } 
+        else {
+              movie_data = {
+              title : rows1[0].movies_title,
+              description : rows1[0].movies_storyline,
+              genre : rows1[0].movies_genre
+          };
+            res.render('movie', {
+            movie : req.params.id,
+            trailer : req.params.vidsrc,
+            movie_data : movie_data,
+            data : JSON.stringify(rows),
+            mainpage : false,
+            videopage: true
+          });
+        }
+      }); //end of 2nd query
+        
     }
   });
 });
