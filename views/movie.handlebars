@@ -36,7 +36,20 @@
     </p>
   </div>
   </article>
-
+    <section id="app" class="movie-genres">
+  <section class="genre-lists">
+  {{#each data1}}
+  <div>
+    <div class="genre-item">
+      <h6 class="genre-name"></h6>
+      <div class="movie-list">
+        <img class="movie-thumb"  src="/images/{{this.movies_cover}}" alt="Card image cap">
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  </section>
+  </section>
   
 	<footer>
 		<span>There should be some relevant info here... still in development</span>
@@ -57,6 +70,12 @@
 			<li v-if="links[0].instagram_link">
 				<a :href="links[0].instagram_link"><i class="fab fa-instagram"></i></a>
 			</li>
+      <li>
+      </li>
 		</ul>
 	</footer>
 </section>
+<section>
+
+ 
+

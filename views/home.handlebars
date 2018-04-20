@@ -1,6 +1,6 @@
 <section id="app" class="movie-genres">
   <div class="movie-wrapper">
-    <video autoplay>
+    <video autoplay controls>
       <source src="video/{{ defaultMovie.movies_trailer }}" type="video/mp4">
       <!-- should load in the fallback sources here -->
     </video>
@@ -16,6 +16,7 @@
       <p class="movie-desc">{{ defaultMovie.movies_storyline }}</p>
     </aside>
   </div>
+
 
   <section class="genre-lists" v-for="genre in genres">
     <div v-if="genre.movies.length > 0">

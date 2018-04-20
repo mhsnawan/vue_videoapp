@@ -24,6 +24,7 @@ router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
   console.log(req.params.id, req.params.vidsrc)
   //Getting movies details and comments through id
   connect.query(`SELECT * FROM tbl_comments WHERE comments_movie = ${req.params.id}`, (err, rows)=> {
+    var movie_data;
     if (err) {
       console.log(err);
     } 
@@ -38,19 +39,43 @@ router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
               description : rows1[0].movies_storyline,
               genre : rows1[0].movies_genre
           };
-            res.render('movie', {
-            movie : req.params.id,
-            trailer : req.params.vidsrc,
-            movie_data : movie_data,
-            data : JSON.stringify(rows),
-            mainpage : false,
-            videopage: true
-          });
+          connect.query(`SELECT * FROM tbl_mov_genre WHERE genre_id = ${req.params.genre_id}`, (err, rows2)=> {
+            if (err) {
+              console.log(err);
+            } 
+            else {
+              var getmoviesname= [];
+              var getmoviesconver={};
+              for(var i=0; i<rows2.length; i++){
+                getmoviesname.push(rows2[i].movies_id);
+              }
+              var q1 = 'SELECT * FROM tbl_movies WHERE movies_id IN ('+getmoviesname+ ')';
+              connect.query(q1, (err, rows3)=> {
+                if (err) {
+                  console.log(err);
+                } 
+                else {
+                  res.render('movie', {
+                    movie : req.params.id,
+                    defaultMovie : rows3[Math.floor(Math.random() * rows3.length)],
+                    trailer : req.params.vidsrc,
+                    movie_data : movie_data,
+                    data : JSON.stringify(rows),
+                    data1 : rows3,
+                    mainpage : false,
+                    videopage: true
+                  }); 
+                }
+              }); //end of 4th query
+              
+            }
+          }); //end of 3rd query
+            
         }
-      }); //end of 2nd query
-        
+      }); //end of 2nd query   
     }
-  });
+  }); //end of 1st query
+
 });
 
 
