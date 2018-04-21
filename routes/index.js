@@ -2,7 +2,7 @@ var express = require('express');
 var connect = require('../utils/sqlConnect');
 var router = express.Router();
 var aync = require('async');
-
+var share = require('social-share');
 /* GET home page. */
 router.get('/', (req, res, next) => {
   // do an SQL query to get all of the movies, including genre
@@ -17,9 +17,14 @@ router.get('/', (req, res, next) => {
         videopage : false
       });
     }
-  })
+  });
 });
-
+router.get('/posttw',(req,res)=>{
+  var url = share('twitter', {
+    title: 'share it'
+  });
+  res.redirect(url);
+});
 router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
   console.log(req.params.id, req.params.vidsrc)
   //Getting movies details and comments through id
@@ -60,6 +65,7 @@ router.get('/movies/:id/:genre_id/:vidsrc', (req, res) => {
                   
                   console.log('genre id is : '+req.params.genre_id);
                   res.render('movie', {
+                    sociallink:'localhost:8080/movies/'+req.params.id+'/'+req.params.genre_id+'/'+req.params.vidsrc,
                     movie : req.params.id,
                     trailer : req.params.vidsrc,
                     movie_data : movie_data,

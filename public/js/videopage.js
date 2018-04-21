@@ -67,6 +67,7 @@ var videoApp = {
             console.log(error);
           });
         }
+        
       }
     })
 };

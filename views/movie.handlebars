@@ -13,12 +13,15 @@
     <h4>{{ movie_data.genre_id }}</h4>
     
   </div>
-
   
+  <div class = "row">
+    <a href="https://www.facebook.com/sharer/sharer.php?u={{sociallink}}" style="padding:30px;" class="btn btn-fb">f</a>
+    <a href="https://twitter.com/intent/tweet?text=check out this link&url={{sociallink}}&via=TWITTER-HANDLE" style="padding:30px;" class="btn btn-tw">tw</a>
+  </div>
   <!-- add your own review -->
   <aside class="add-comment">
     <h4>Add a review</h4>
-    <span class="hidden movId">{{ movie }}</span>
+    <span class="hidden movId">{{ movie }}</spantw>
     <input type="range" name="myRange" min="0" max="5" step="1" v-model="numStars">
     <label for="myRange">${numStars}Star Review</label>
     <textarea name="myReview" placeholder="What did you think?" v-model="review"></textarea>
